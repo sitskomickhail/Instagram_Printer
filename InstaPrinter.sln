@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstMain", "InstMain\InstMain.csproj", "{7F24AC15-11FE-4304-87A0-982E987F7ED9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstagramLibrary", "InstagramLibrary\InstagramLibrary.csproj", "{2684DB64-08FE-4A7F-936A-CB8787DAC9CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaLog", "InstaLog\InstaLog.csproj", "{9BF7B8CD-BB33-492F-AB9A-727996B9DA3E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F24AC15-11FE-4304-87A0-982E987F7ED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F24AC15-11FE-4304-87A0-982E987F7ED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F24AC15-11FE-4304-87A0-982E987F7ED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F24AC15-11FE-4304-87A0-982E987F7ED9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2684DB64-08FE-4A7F-936A-CB8787DAC9CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2684DB64-08FE-4A7F-936A-CB8787DAC9CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2684DB64-08FE-4A7F-936A-CB8787DAC9CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2684DB64-08FE-4A7F-936A-CB8787DAC9CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BF7B8CD-BB33-492F-AB9A-727996B9DA3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BF7B8CD-BB33-492F-AB9A-727996B9DA3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BF7B8CD-BB33-492F-AB9A-727996B9DA3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BF7B8CD-BB33-492F-AB9A-727996B9DA3E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2BAB962D-1CD4-4C5D-A533-B1A63535A8A8}
+	EndGlobalSection
+EndGlobal

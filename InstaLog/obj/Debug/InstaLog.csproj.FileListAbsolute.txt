@@ -1,0 +1,5 @@
+E:\Sitsko\C# kursa4\InstaPrinter\InstaLog\obj\Debug\InstaLog.csproj.CoreCompileInputs.cache
+E:\Sitsko\C# kursa4\InstaPrinter\InstaLog\bin\Debug\InstaLog.dll
+E:\Sitsko\C# kursa4\InstaPrinter\InstaLog\bin\Debug\InstaLog.pdb
+E:\Sitsko\C# kursa4\InstaPrinter\InstaLog\obj\Debug\InstaLog.dll
+E:\Sitsko\C# kursa4\InstaPrinter\InstaLog\obj\Debug\InstaLog.pdb
