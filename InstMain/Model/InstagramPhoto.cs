@@ -10,5 +10,6 @@ namespace InstMain.Model
     {
         public string UserName { get; set; }
         public int CountPhotos { get; set; }
+        public string PhotoLink { get; set; }
     }
 }

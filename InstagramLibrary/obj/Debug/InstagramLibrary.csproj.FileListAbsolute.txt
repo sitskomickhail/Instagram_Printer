@@ -9,3 +9,14 @@ E:\Sitsko\C# kursa4\InstaPrinter\InstagramLibrary\bin\Debug\Newtonsoft.Json.xml
 E:\Sitsko\C# kursa4\InstaPrinter\InstagramLibrary\obj\Debug\InstagramLibrary.csproj.CopyComplete
 E:\Sitsko\C# kursa4\InstaPrinter\InstagramLibrary\obj\Debug\InstagramLibrary.dll
 E:\Sitsko\C# kursa4\InstaPrinter\InstagramLibrary\obj\Debug\InstagramLibrary.pdb
+E:\Projects\InstaPrinter\InstagramLibrary\bin\Debug\InstagramLibrary.dll
+E:\Projects\InstaPrinter\InstagramLibrary\bin\Debug\InstagramLibrary.pdb
+E:\Projects\InstaPrinter\InstagramLibrary\bin\Debug\InstaLog.dll
+E:\Projects\InstaPrinter\InstagramLibrary\bin\Debug\Newtonsoft.Json.dll
+E:\Projects\InstaPrinter\InstagramLibrary\bin\Debug\InstaLog.pdb
+E:\Projects\InstaPrinter\InstagramLibrary\bin\Debug\Newtonsoft.Json.xml
+E:\Projects\InstaPrinter\InstagramLibrary\obj\Debug\InstagramLibrary.csprojAssemblyReference.cache
+E:\Projects\InstaPrinter\InstagramLibrary\obj\Debug\InstagramLibrary.csproj.CoreCompileInputs.cache
+E:\Projects\InstaPrinter\InstagramLibrary\obj\Debug\InstagramLibrary.csproj.CopyComplete
+E:\Projects\InstaPrinter\InstagramLibrary\obj\Debug\InstagramLibrary.dll
+E:\Projects\InstaPrinter\InstagramLibrary\obj\Debug\InstagramLibrary.pdb

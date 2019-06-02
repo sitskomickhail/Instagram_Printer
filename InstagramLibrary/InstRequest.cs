@@ -46,17 +46,18 @@ namespace InstagramLibrary
                     Debug.WriteLine("Bootstrap progress meet exception " + bex.Message);
                     throw bex; //Status==ConnectFailure
                 }
-
-
+            
             try
             {
-                var request = HttpRequestBuilder.Get("https://www.instagram.com/instagram/?hl=ru", _cookieContainer);
-                request.Referer = $"https://www.instagram.com/explore/{Hashtag}/find/?hl=ru";
+                var request = HttpRequestBuilder.Get($"https://www.instagram.com/explore/tags/{Hashtag}/?__a=1", _cookieContainer);
+                request.Referer = $"https://www.instagram.com/explore/tags/{Hashtag}/";
                 request.Headers["X-Requested-With"] = "XMLHttpRequest";
+                request.Headers["X-IG-App-ID"] = "936619743392459";
+                request.Headers["X-Instagram-GIS"] = "07872401bf58d36857235616ae5cc596";
                 request.AllowAutoRedirect = false;
                 using (var response = await request.GetResponseAsync() as HttpWebResponse)
                 {
-                    _cookieContainer.Add(response.Cookies);
+                    _cookieContainer.Add(response.Cookies); // may be exep
                     using (var responseStream = response.GetResponseStream())
                     using (var gzipStream = new GZipStream(responseStream, CompressionMode.Decompress))
                     using (var streamReader = new StreamReader(gzipStream))

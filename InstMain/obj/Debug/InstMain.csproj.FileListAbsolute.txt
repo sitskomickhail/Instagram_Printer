@@ -20,3 +20,25 @@ E:\Sitsko\C# kursa4\InstaPrinter\InstMain\bin\Debug\InstagramLibrary.pdb
 E:\Sitsko\C# kursa4\InstaPrinter\InstMain\bin\Debug\InstaLog.pdb
 E:\Sitsko\C# kursa4\InstaPrinter\InstMain\bin\Debug\Newtonsoft.Json.xml
 E:\Sitsko\C# kursa4\InstaPrinter\InstMain\obj\Debug\InstMain.csproj.CopyComplete
+E:\Projects\InstaPrinter\InstMain\bin\Debug\InstMain.exe.config
+E:\Projects\InstaPrinter\InstMain\bin\Debug\InstMain.exe
+E:\Projects\InstaPrinter\InstMain\bin\Debug\InstMain.pdb
+E:\Projects\InstaPrinter\InstMain\bin\Debug\InstagramLibrary.dll
+E:\Projects\InstaPrinter\InstMain\bin\Debug\InstaLog.dll
+E:\Projects\InstaPrinter\InstMain\bin\Debug\Newtonsoft.Json.dll
+E:\Projects\InstaPrinter\InstMain\bin\Debug\InstagramLibrary.pdb
+E:\Projects\InstaPrinter\InstMain\bin\Debug\InstaLog.pdb
+E:\Projects\InstaPrinter\InstMain\bin\Debug\Newtonsoft.Json.xml
+E:\Projects\InstaPrinter\InstMain\obj\Debug\InstMain.csprojAssemblyReference.cache
+E:\Projects\InstaPrinter\InstMain\obj\Debug\View\MainWindow.g.cs
+E:\Projects\InstaPrinter\InstMain\obj\Debug\App.g.cs
+E:\Projects\InstaPrinter\InstMain\obj\Debug\InstMain_MarkupCompile.cache
+E:\Projects\InstaPrinter\InstMain\obj\Debug\InstMain_MarkupCompile.lref
+E:\Projects\InstaPrinter\InstMain\obj\Debug\View\MainWindow.baml
+E:\Projects\InstaPrinter\InstMain\obj\Debug\InstMain.g.resources
+E:\Projects\InstaPrinter\InstMain\obj\Debug\InstMain.Properties.Resources.resources
+E:\Projects\InstaPrinter\InstMain\obj\Debug\InstMain.csproj.GenerateResource.cache
+E:\Projects\InstaPrinter\InstMain\obj\Debug\InstMain.csproj.CoreCompileInputs.cache
+E:\Projects\InstaPrinter\InstMain\obj\Debug\InstMain.csproj.CopyComplete
+E:\Projects\InstaPrinter\InstMain\obj\Debug\InstMain.exe
+E:\Projects\InstaPrinter\InstMain\obj\Debug\InstMain.pdb
