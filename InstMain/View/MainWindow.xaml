@@ -5,25 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InstMain"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="500"
+        Title="MainWindow" Height="250" Width="500"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.37*"/>
-            <ColumnDefinition Width="0.63*"/>
+            <ColumnDefinition Width="0.4*"/>
+            <ColumnDefinition Width="0.6*"/>
         </Grid.ColumnDefinitions>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.4*"/>
                 <RowDefinition Height="0.6*"/>
+                <RowDefinition Height="0.4*"/>
+
             </Grid.RowDefinitions>
 
             <GroupBox Header="Информация о работе" Margin="5">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.5*"/>
-                        <RowDefinition Height="0.5*"/>
-                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.75*"/>
@@ -43,39 +44,23 @@
                            Foreground="Red"></Label>
                 </Grid>
             </GroupBox>
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.15*"/>
-                    <RowDefinition Height="0.15*"/>
-                    <RowDefinition Height="0.85*"/>
-                </Grid.RowDefinitions>
-                <Label>Размер картинки</Label>
-                <Grid Margin="5, 0, 5, 0" Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.4*"/>
-                        <ColumnDefinition Width="0.2*"/>
-                        <ColumnDefinition Width="0.4*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox BorderThickness="1"
-                             HorizontalContentAlignment="Center" 
-                             VerticalContentAlignment="Center"
-                             FontSize="18" />
-                    <TextBox Grid.Column="1" 
-                             IsReadOnly="True" 
-                             Text="x" 
-                             HorizontalContentAlignment="Center" 
-                             VerticalContentAlignment="Center"
-                             FontSize="18" 
-                             FontWeight="Bold" 
-                             BorderThickness="0"/>
-                    <TextBox Grid.Column="2" 
-                             BorderThickness="1"
-                             HorizontalContentAlignment="Center" 
-                             VerticalContentAlignment="Center"
-                             FontSize="18" />
+            <GroupBox Grid.Row="1" Header="Настройки">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.6*"/>
+                        <RowDefinition Height="0.6*"/>
+                    </Grid.RowDefinitions>
+                    <Button Content="Открыть папку с фото"
+                            FontSize="15"
+                            FontWeight="Bold"
+                            Margin="2, 4, 2, 4"/>
+                    <Button Content="Настройка принтера"
+                            Grid.Row="1"
+                            Margin="2, 4, 2, 4"
+                            FontSize="15"/>
                 </Grid>
-                
-            </Grid>
+            </GroupBox>
+
         </Grid>
 
         <Grid Grid.Column="1">
@@ -83,7 +68,30 @@
                 <RowDefinition Height="0.75*"/>
                 <RowDefinition Height="0.25*"/>
             </Grid.RowDefinitions>
+            <StackPanel>
+                <Label Content="Hashtag #1"
+                       Margin="5, 5, 0, 0"
+                       FontSize="14"/>
+                <TextBox Name="tbHash1"
+                         Margin="5, 0, 10, 0"
+                         MinHeight="25"/>
 
+                <Label Content="Hashtag #2"
+                       Margin="5, 5, 0, 0"
+                       FontSize="14"/>
+                <TextBox Name="tbHash2"
+                         Margin="5, 0, 10, 0"
+                         MinHeight="25"/>
+                <Button Content="Pause"
+                        FontSize="17"
+                        Margin="10, 14, 10, 0"
+                        IsEnabled="False"></Button>
+            </StackPanel>
+            <Grid Grid.Row="1">
+                <Button Content="Старт"
+                        FontSize="17"
+                        Margin="10"/>
+            </Grid>
         </Grid>
     </Grid>
 </Window>
