@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstagramLibrary", "Instagr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaLog", "InstaLog\InstaLog.csproj", "{9BF7B8CD-BB33-492F-AB9A-727996B9DA3E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrinterLibrary", "PrinterLibrary\PrinterLibrary.csproj", "{08FDCA1A-39A6-4959-BBB6-BAA87B21FE3B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9BF7B8CD-BB33-492F-AB9A-727996B9DA3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BF7B8CD-BB33-492F-AB9A-727996B9DA3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BF7B8CD-BB33-492F-AB9A-727996B9DA3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08FDCA1A-39A6-4959-BBB6-BAA87B21FE3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08FDCA1A-39A6-4959-BBB6-BAA87B21FE3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08FDCA1A-39A6-4959-BBB6-BAA87B21FE3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08FDCA1A-39A6-4959-BBB6-BAA87B21FE3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

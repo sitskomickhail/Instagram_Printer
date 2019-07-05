@@ -4,9 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InstMain"
+        xmlns:ViewModels="clr-namespace:InstMain.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="250" Width="500"
+        Title="Instagram Parse-Printer" Height="250" Width="500"
         WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <ViewModels:MainWindowViewModel/>
+    </Window.DataContext>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.4*"/>
@@ -16,7 +22,6 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.6*"/>
                 <RowDefinition Height="0.4*"/>
-
             </Grid.RowDefinitions>
 
             <GroupBox Header="Информация о работе" Margin="5">
@@ -31,17 +36,23 @@
                         <ColumnDefinition Width="0.25*"/>
                     </Grid.ColumnDefinitions>
                     <Label FontSize="14">В очереди:</Label>
-                    <Label Grid.Column="1"></Label>
+                    <Label Grid.Column="1"
+                           Content="{Binding SuccessPrint}"
+                           Margin="10, 4, 0, 0"/>
 
                     <Label FontSize="14" Grid.Row="1"
                            Foreground="Green">Успешно:</Label>
                     <Label Grid.Column="1" Grid.Row="1"
-                           Foreground="Green"></Label>
+                           Foreground="Green"
+                           Content="{Binding WaitingPrint}"
+                           Margin="10, 4, 0, 0"/>
 
                     <Label FontSize="14" Grid.Row="2"
                            Foreground="Red">Не распечатаны:</Label>
                     <Label Grid.Column="1" Grid.Row="2"
-                           Foreground="Red"></Label>
+                           Foreground="Red"
+                           Content="{Binding UnsuccessPrints}"
+                           Margin="10, 4, 0, 0"/>
                 </Grid>
             </GroupBox>
             <GroupBox Grid.Row="1" Header="Настройки">
@@ -50,14 +61,16 @@
                         <RowDefinition Height="0.6*"/>
                         <RowDefinition Height="0.6*"/>
                     </Grid.RowDefinitions>
-                    <Button Content="Открыть папку с фото"
-                            FontSize="15"
+                    <Button Content="Настроить шаблоны"
+                            FontSize="14"
                             FontWeight="Bold"
-                            Margin="2, 4, 2, 4"/>
+                            Margin="2, 4, 2, 4"
+                            Command="{Binding OpenPhotoCommand}"/>
                     <Button Content="Настройка принтера"
                             Grid.Row="1"
                             Margin="2, 4, 2, 4"
-                            FontSize="15"/>
+                            FontSize="14"
+                            Command="{Binding OpenPrinter}"/>
                 </Grid>
             </GroupBox>
 
@@ -74,23 +87,32 @@
                        FontSize="14"/>
                 <TextBox Name="tbHash1"
                          Margin="5, 0, 10, 0"
-                         MinHeight="25"/>
+                         MinHeight="25"
+                         FontSize="13"
+                         FontWeight="Bold"
+                         Text="{Binding Hashtag_1}"/>
 
                 <Label Content="Hashtag #2"
                        Margin="5, 5, 0, 0"
                        FontSize="14"/>
                 <TextBox Name="tbHash2"
                          Margin="5, 0, 10, 0"
-                         MinHeight="25"/>
+                         MinHeight="25"
+                         FontSize="13"
+                         FontWeight="Bold"
+                         Text="{Binding Hashtag_2}"/>
                 <Button Content="Pause"
                         FontSize="17"
                         Margin="10, 14, 10, 0"
-                        IsEnabled="False"></Button>
+                        Command="{Binding PauseCommand}"
+                        IsEnabled="{Binding IsEnabledPauseBtn}"/>
             </StackPanel>
             <Grid Grid.Row="1">
                 <Button Content="Старт"
                         FontSize="17"
-                        Margin="10"/>
+                        Margin="10"
+                        Command="{Binding StartCommand}"
+                        IsEnabled="{Binding IsEnabledStartBtn}"/>
             </Grid>
         </Grid>
     </Grid>

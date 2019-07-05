@@ -42,3 +42,6 @@ E:\Projects\InstaPrinter\InstMain\obj\Debug\InstMain.csproj.CoreCompileInputs.ca
 E:\Projects\InstaPrinter\InstMain\obj\Debug\InstMain.csproj.CopyComplete
 E:\Projects\InstaPrinter\InstMain\obj\Debug\InstMain.exe
 E:\Projects\InstaPrinter\InstMain\obj\Debug\InstMain.pdb
+E:\Projects\InstaPrinter\InstMain\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\Projects\InstaPrinter\InstMain\bin\Debug\PrinterLibrary.dll
+E:\Projects\InstaPrinter\InstMain\bin\Debug\PrinterLibrary.pdb
