@@ -15,6 +15,8 @@ namespace InstMain.ViewModel
 {
     class MainWindowViewModel : BaseViewModel
     {
+        InstagramModel model;
+
         private int _successPrint;
         public int SuccessPrint
         {
@@ -51,7 +53,7 @@ namespace InstMain.ViewModel
         }
 
 
-        public ObservableCollection<InstagramPhoto> InstagramPhotos { get; set; }
+        public ObservableCollection<InstagramModel> InstagramPhotos { get; set; }
         public ICommand StartCommand { get; set; }
         public ICommand PauseCommand { get; set; }
         public ICommand OpenPhotoCommand { get; set; }
@@ -59,13 +61,14 @@ namespace InstMain.ViewModel
 
         public MainWindowViewModel()
         {
-            Hashtag_1 = "#chernobylquest";
             string day = (DateTime.Now.Day < 10) ? $"0{DateTime.Now.Day}" : $"{DateTime.Now.Day}";
             string month = (DateTime.Now.Month < 10) ? $"0{DateTime.Now.Month}" : $"{DateTime.Now.Month}";
+            Hashtag_1 = "#chernobylquest";
             Hashtag_2 = $"#chernobylquest{day}{month}";
 
             IsEnabledStartBtn = true;
 
+            model = new InstagramModel();
             OpenPhotoCommand = new RelayCommand(OnOpenPhotoCommandExecute);
             StartCommand = new RelayCommand(OnStartCommandExecute);
         }
@@ -95,8 +98,17 @@ namespace InstMain.ViewModel
             {
                 IsEnabledStartBtn = false;
                 IsEnabledPauseBtn = true;
+
+                if (Hashtag_1.Contains("#"))
+                    model.Hashtag_1 = Hashtag_1.Remove(0, 1);
+                else
+                    model.Hashtag_1 = Hashtag_1;
+                if (Hashtag_2.Contains("#"))
+                    model.Hashtag_2 = Hashtag_2.Remove(0, 1);
+                else
+                    model.Hashtag_2 = Hashtag_2;
+                model.Start();
             }
-           
         }
 
 
@@ -107,7 +119,7 @@ namespace InstMain.ViewModel
             openFileDialog.InitialDirectory = $@"{Environment.CurrentDirectory}\Templates";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                PhotoCreatorLogic.TemplateName = openFileDialog.FileName;
+                model.TemplateName = openFileDialog.FileName;
             }
         }
     }

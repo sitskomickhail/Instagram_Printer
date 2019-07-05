@@ -24,26 +24,6 @@ namespace InstagramLibrary
 
         public async Task<HashResult> FindHashtagPhotos()
         {
-            for (int i = 0; i < 3; i++)
-                try
-                {
-                    var bootstrapRequest = HttpRequestBuilder.Get("https://www.instagram.com/instagram/?hl=ru", _cookieContainer);
-                    bootstrapRequest.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*;q=0.8";
-                    bootstrapRequest.Headers["Upgrade-Insecure-Requests"] = "1";
-                    using (var bootstrapResponse = await bootstrapRequest.GetResponseAsync() as HttpWebResponse)
-                    {
-                        if (bootstrapResponse.Cookies.Count == 0)
-                            continue;
-                        _cookieContainer.Add(bootstrapResponse.Cookies);
-                        break;
-                    }
-                }
-                catch (Exception bex)
-                {
-                    Debug.WriteLine("Bootstrap progress meet exception " + bex.Message);
-                    throw bex; //Status==ConnectFailure
-                }
-            
             try
             {
                 var request = HttpRequestBuilder.Get($"https://www.instagram.com/explore/tags/{Hashtag}/?__a=1", _cookieContainer);
@@ -67,7 +47,10 @@ namespace InstagramLibrary
             catch (Exception ex)
             {
                 Debug.WriteLine("GetProfile progress occur exception " + ex.Message);
-                lock (LogIO.locker) logging.Invoke(LogIO.mainLog, new Log() { UserName = null, Date = DateTime.Now, Message = $"Exception! {ex.Message}", Method = "HttpAndroid.FindHashtagPhotos" });
+                if (ex.Message.Contains("404"))
+                    return null;
+
+                logging.Invoke(LogIO.mainLog, new Log() { Date = DateTime.Now, Message = ex.Message, Method = "FindHashtagPhotos" });
                 throw ex;
             }
         }

@@ -68,7 +68,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Infrastructure\RelayCommand.cs" />
-    <Compile Include="Model\InstagramPhoto.cs" />
+    <Compile Include="Model\Generator.cs" />
+    <Compile Include="Model\InstagramModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
