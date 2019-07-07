@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -15,7 +16,7 @@ namespace InstMain.ViewModel
 {
     class MainWindowViewModel : BaseViewModel
     {
-        InstagramModel model;
+        InstagramModel _model;
 
         private int _successPrint;
         public int SuccessPrint
@@ -42,14 +43,14 @@ namespace InstMain.ViewModel
         public string Hashtag_1
         {
             get { return _hashtag1; }
-            set { _hashtag1 = value; }
+            set { _hashtag1 = value; OnPropertyChanged(); }
         }
 
         private string _hashtag2;
         public string Hashtag_2
         {
             get { return _hashtag2; }
-            set { _hashtag2 = value; }
+            set { _hashtag2 = value; OnPropertyChanged(); }
         }
 
 
@@ -57,7 +58,7 @@ namespace InstMain.ViewModel
         public ICommand StartCommand { get; set; }
         public ICommand PauseCommand { get; set; }
         public ICommand OpenPhotoCommand { get; set; }
-        public ICommand OpenPrinter { get; set; }
+        public ICommand OpenLogoCommand { get; set; }
 
         public MainWindowViewModel()
         {
@@ -68,9 +69,11 @@ namespace InstMain.ViewModel
 
             IsEnabledStartBtn = true;
 
-            model = new InstagramModel();
+            _model = new InstagramModel();
             OpenPhotoCommand = new RelayCommand(OnOpenPhotoCommandExecute);
+            OpenLogoCommand = new RelayCommand(OnOpenLogoCommandExecute);
             StartCommand = new RelayCommand(OnStartCommandExecute);
+            PauseCommand = new RelayCommand(OnPauseCommandExecute);
         }
 
         private bool _isEnabledStartBtn;
@@ -99,19 +102,52 @@ namespace InstMain.ViewModel
                 IsEnabledStartBtn = false;
                 IsEnabledPauseBtn = true;
 
+                _model.IsWorking = true;
+
                 if (Hashtag_1.Contains("#"))
-                    model.Hashtag_1 = Hashtag_1.Remove(0, 1);
+                    _model.Hashtag_1 = Hashtag_1.Remove(0, 1);
                 else
-                    model.Hashtag_1 = Hashtag_1;
+                    _model.Hashtag_1 = Hashtag_1;
                 if (Hashtag_2.Contains("#"))
-                    model.Hashtag_2 = Hashtag_2.Remove(0, 1);
+                    _model.Hashtag_2 = Hashtag_2.Remove(0, 1);
                 else
-                    model.Hashtag_2 = Hashtag_2;
-                model.Start();
+                    _model.Hashtag_2 = Hashtag_2;
+                _model.Start();
+                _model.CreatePhoto();
+                CheckPosses();
             }
         }
 
+        private void OnOpenLogoCommandExecute(object obj)
+        {
+            System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            openFileDialog.InitialDirectory = $@"{Environment.CurrentDirectory}\Logos";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                _model.LogoName = openFileDialog.FileName;
+            }
+        }
 
+        private void OnPauseCommandExecute(object obj)
+        {
+            IsEnabledStartBtn = true;
+            IsEnabledPauseBtn = false;
+            _model.IsWorking = false;
+        }
+
+        private async void CheckPosses()
+        {
+            await Task.Run(() =>
+            {
+                while (_model.IsWorking)
+                {
+                    Thread.Sleep(100);
+                    SuccessPrint = _model.SuccessPrint;
+                    UnsuccessPrints = _model.UnsuccessPrints;
+                    WaitingPrint = _model.WaitingPrint;
+                }
+            });
+        }
 
         private void OnOpenPhotoCommandExecute(object obj)
         {
@@ -119,7 +155,7 @@ namespace InstMain.ViewModel
             openFileDialog.InitialDirectory = $@"{Environment.CurrentDirectory}\Templates";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                model.TemplateName = openFileDialog.FileName;
+                _model.TemplateName = openFileDialog.FileName;
             }
         }
     }

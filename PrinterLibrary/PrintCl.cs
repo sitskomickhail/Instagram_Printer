@@ -5,22 +5,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing.Printing;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace PrinterLibrary
 {
     public class PrintCl
     {
-        public static void PrintImage()
+        public  string Path { get; set; }
+        
+        public PrintCl(string path)
+        {
+            if (path.Length > 0)
+                Path = path;
+        }
+
+        public  void PrintImage()
         {
             PrintDocument printD = new PrintDocument();
-            printD.PrintPage += PrintD_PrintPage;
+            printD.PrintPage += PrintD_PrintPage;            
             printD.Print();
         }
 
-        private static void PrintD_PrintPage(object sender, PrintPageEventArgs e)
+        private void PrintD_PrintPage(object sender, PrintPageEventArgs e)
         {
-            Image img = Image.FromFile("D:\\Foto.jpg");
-            Point loc = new Point(100, 100);
+            
+            Image img = Image.FromFile(Path);
+            Point loc = new Point(0, 0);
             e.Graphics.DrawImage(img, loc);
         }
     }

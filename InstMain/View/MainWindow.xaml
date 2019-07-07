@@ -37,14 +37,14 @@
                     </Grid.ColumnDefinitions>
                     <Label FontSize="14">В очереди:</Label>
                     <Label Grid.Column="1"
-                           Content="{Binding SuccessPrint}"
+                           Content="{Binding WaitingPrint}"
                            Margin="10, 4, 0, 0"/>
 
                     <Label FontSize="14" Grid.Row="1"
                            Foreground="Green">Успешно:</Label>
                     <Label Grid.Column="1" Grid.Row="1"
                            Foreground="Green"
-                           Content="{Binding WaitingPrint}"
+                           Content="{Binding SuccessPrint}"
                            Margin="10, 4, 0, 0"/>
 
                     <Label FontSize="14" Grid.Row="2"
@@ -61,16 +61,16 @@
                         <RowDefinition Height="0.6*"/>
                         <RowDefinition Height="0.6*"/>
                     </Grid.RowDefinitions>
-                    <Button Content="Настроить шаблоны"
+                    <Button Content="Выбрать шаблон"
                             FontSize="14"
                             FontWeight="Bold"
                             Margin="2, 4, 2, 4"
                             Command="{Binding OpenPhotoCommand}"/>
-                    <Button Content="Настройка принтера"
+                    <Button Content="Настройка логотипа"
                             Grid.Row="1"
                             Margin="2, 4, 2, 4"
                             FontSize="14"
-                            Command="{Binding OpenPrinter}"/>
+                            Command="{Binding OpenLogoCommand}"/>
                 </Grid>
             </GroupBox>
 
@@ -101,7 +101,7 @@
                          FontSize="13"
                          FontWeight="Bold"
                          Text="{Binding Hashtag_2}"/>
-                <Button Content="Pause"
+                <Button Content="Пауза"
                         FontSize="17"
                         Margin="10, 14, 10, 0"
                         Command="{Binding PauseCommand}"
