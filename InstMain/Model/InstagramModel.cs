@@ -195,7 +195,7 @@ namespace InstMain.Model
                         }
                     }
 
-                    if (tempPos == 1)
+                    if (tempPos == 28)
                     {
                         WaitingPrint = files_all.Count;
                         foreach (var files in files_all)

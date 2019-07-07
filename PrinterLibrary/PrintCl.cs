@@ -11,27 +11,29 @@ namespace PrinterLibrary
 {
     public class PrintCl
     {
-        public  string Path { get; set; }
-        
+        public string Path { get; set; }
+
         public PrintCl(string path)
         {
             if (path.Length > 0)
                 Path = path;
         }
 
-        public  void PrintImage()
+        public void PrintImage()
         {
             PrintDocument printD = new PrintDocument();
-            printD.PrintPage += PrintD_PrintPage;            
+            printD.PrintPage += PrintD_PrintPage;
             printD.Print();
         }
 
         private void PrintD_PrintPage(object sender, PrintPageEventArgs e)
         {
-            
-            Image img = Image.FromFile(Path);
-            Point loc = new Point(0, 0);
-            e.Graphics.DrawImage(img, loc);
+            using (var bmp = new Bitmap(Path))
+            {
+                Image img = new Bitmap(bmp);
+                Point loc = new Point(0, 0);
+                e.Graphics.DrawImage(img, loc);
+            }
         }
     }
 }
