@@ -20,6 +20,9 @@ namespace PrinterLibrary
         private const string _imgLogoPath = @"\Logos";
         private const string _imgPath = @"\Photos";
 
+        public string HashtagforDrawing1 { get; set; }
+        public string HashtagforDrawing2 { get; set; }
+
         public PhotoCreatorLogic()
         {
             var files = Directory.GetFiles(Environment.CurrentDirectory + _imgTemplatePath + "\\");
@@ -49,7 +52,10 @@ namespace PrinterLibrary
                 res.Append(valid[rnd.Next(valid.Length)]);
             }
             string path = res.ToString() + ".jpg";
-            path = "Photos" + "\\" + photoName.Split('\\')[0] + "\\" + path;
+            if (photoName.Contains("\\"))
+                path = "Photos" + "\\" + photoName.Split('\\')[0] + "\\" + path;
+            else
+                path = "Photos" + "\\" + path;
             using (var img0 = (Bitmap)Image.FromFile(Environment.CurrentDirectory + _imgPath + "\\" + photoName))
             using (var img1 = (Bitmap)Image.FromFile(Environment.CurrentDirectory + _imgTemplatePath + "\\" + TemplateName))
             using (var bmp = AlphaBlending(img0, img1, (byte)0))
@@ -107,6 +113,28 @@ namespace PrinterLibrary
                     }
 
             }
+
+            PointF hash1LeftLocation = new PointF(20f, 40f);
+            PointF hash2LeftLocation = new PointF(20f, 70f);
+
+            PointF hash1RightLocation = new PointF(650f, 40f);
+            PointF hash2RightLocation = new PointF(650f, 70f);
+
+            using (Graphics graphics = Graphics.FromImage(bmp))
+            {
+                PrivateFontCollection pfc = new PrivateFontCollection();
+                pfc.AddFontFile("SpecialElite-Regular.ttf");
+
+                using (Font arialFont = new Font(pfc.Families[0], 21, FontStyle.Bold))
+                {
+                    graphics.DrawString(HashtagforDrawing1, arialFont, Brushes.Gold, hash1LeftLocation);
+                    graphics.DrawString(HashtagforDrawing2, arialFont, Brushes.Gold, hash2LeftLocation);
+
+                    graphics.DrawString(HashtagforDrawing1, arialFont, Brushes.Gold, hash1RightLocation);
+                    graphics.DrawString(HashtagforDrawing2, arialFont, Brushes.Gold, hash2RightLocation);
+                }
+            }
+            
             bmp.Save(photo, ImageFormat.Jpeg);
         }
 
