@@ -179,6 +179,20 @@ namespace InstMain.Model
                             if (Hashtag_2.Length > 0)
                                 creatorLogic.HashtagforDrawing2 = "#" + Hashtag_2;
 
+                            var imgRs1 = creatorLogic.ResizeImage(640, Environment.CurrentDirectory + @"\Photos\" + files[0]);
+                            var imgRs2 = creatorLogic.ResizeImage(640, Environment.CurrentDirectory + @"\Photos\" + files[1]);
+
+                            string oldFile0 = files[0];
+                            string oldFile1 = files[1];
+
+                            files[0] = oldFile0.Replace(".jpg", "lp.jpg");
+                            files[1] = oldFile1.Replace(".jpg", "lp.jpg");
+
+                            imgRs1.Save(Environment.CurrentDirectory + @"\Photos\" + files[0]); imgRs1.Dispose();
+                            imgRs2.Save(Environment.CurrentDirectory + @"\Photos\" + files[1]); imgRs2.Dispose();
+
+                            File.Delete(@"Photos\" + oldFile0); File.Delete(@"Photos\" + oldFile1);
+
                             string photoName = creatorLogic.CreatePhoto(files[0]);
                             creatorLogic.AddPhoto(photoName, files[1]);
                             creatorLogic.AddLogo(photoName);
@@ -200,12 +214,12 @@ namespace InstMain.Model
                         }
                     }
 
-                    if (tempPos == 28)
+                    if (tempPos == 1)
                     {
                         WaitingPrint = files_all.Count;
                         foreach (var files in files_all)
                         {
-                            if (files.Count() == 1)
+                            if (files.Count() % 2 == 1)
                             {
                                 files[0] = files[0].Remove(0, 7);
                                 PhotoCreatorLogic creatorLogic = new PhotoCreatorLogic();
@@ -227,6 +241,16 @@ namespace InstMain.Model
                                     creatorLogic.HashtagforDrawing1 = "#" + Hashtag_1;
                                 if (Hashtag_2.Length > 0)
                                     creatorLogic.HashtagforDrawing2 = "#" + Hashtag_2;
+
+                                var imgRs1 = creatorLogic.ResizeImage(640, Environment.CurrentDirectory + @"\Photos\" + files[0]);
+                                
+                                string oldFile0 = files[0];
+                                
+                                files[0] = oldFile0.Replace(".jpg", "lp.jpg");
+                                
+                                imgRs1.Save(Environment.CurrentDirectory + @"\Photos\" + files[0]); imgRs1.Dispose();
+                                
+                                File.Delete(@"Photos\" + oldFile0);
 
                                 string photoName = creatorLogic.CreatePhoto(files[0]);
                                 creatorLogic.AddLogo(photoName);

@@ -134,7 +134,7 @@ namespace PrinterLibrary
                     graphics.DrawString(HashtagforDrawing2, arialFont, Brushes.Gold, hash2RightLocation);
                 }
             }
-            
+
             bmp.Save(photo, ImageFormat.Jpeg);
         }
 
@@ -192,16 +192,32 @@ namespace PrinterLibrary
             int newHeight = 0;
             using (var bmpTemp = new Bitmap(path))
             {
-                originalImage = new Bitmap(bmpTemp);
-                if (originalImage.Width <= newSize)
-                    newSize = originalImage.Width;
-
-                newHeight = originalImage.Height * newSize / originalImage.Width;
-
-                if (newHeight > newSize)
+                if (newSize == 640)
                 {
-                    newSize = originalImage.Width * newSize / originalImage.Height;
-                    newHeight = newSize;
+                    originalImage = new Bitmap(bmpTemp);
+                    if (originalImage.Width < originalImage.Height)
+                    {
+                        newHeight = originalImage.Height * newSize / originalImage.Width;
+                    }
+                    else
+                    {
+                        newSize = originalImage.Width * newSize / originalImage.Height;
+                        newHeight = 720;
+                    }
+                }
+                else
+                {
+                    originalImage = new Bitmap(bmpTemp);
+                    if (originalImage.Width <= newSize)
+                        newSize = originalImage.Width;
+
+                    newHeight = originalImage.Height * newSize / originalImage.Width;
+
+                    if (newHeight >= newSize)
+                    {
+                        newSize = originalImage.Width * newSize / originalImage.Height;
+                        newHeight = newSize;
+                    }
                 }
             }
             return originalImage.GetThumbnailImage(newSize, newHeight, null, IntPtr.Zero);
