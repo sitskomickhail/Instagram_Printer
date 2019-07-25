@@ -9,7 +9,6 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace InstMain.Model
 {
@@ -146,7 +145,8 @@ namespace InstMain.Model
                         foreach (var user in UsersInfo)
                         {
                             files_all.Add(Directory.GetFiles($@"Photos\{user["id"]}\"));
-                            if (Int32.Parse(user[$"{user["id"]}"]) % 2 == 0)
+                            var res = Directory.GetFiles($@"Photos\{user["id"]}\");
+                            if (res.Count() >= 2)
                             {
                                 files_two.Add(Directory.GetFiles($@"Photos\{user["id"]}\"));
                             }
@@ -155,8 +155,6 @@ namespace InstMain.Model
 
                     foreach (var files in files_two)
                     {
-                        if (files.Count() >= 2)
-                        {
                             files[0] = files[0].Remove(0, 7);
                             files[1] = files[1].Remove(0, 7);
                             PhotoCreatorLogic creatorLogic = new PhotoCreatorLogic();
@@ -200,7 +198,7 @@ namespace InstMain.Model
                             File.Delete(@"Photos\" + files[0]);
                             File.Delete(@"Photos\" + files[1]);
 
-                            var img = creatorLogic.ResizeImage(790, photoName);
+                            var img = creatorLogic.ResizeImage(610, photoName);
                             string newPhotoName = photoName.Replace(".jpg", "sp.jpg");
                             img.Save(newPhotoName);
                             img.Dispose();
@@ -211,15 +209,16 @@ namespace InstMain.Model
                             catch (Exception ex)
                             { Debug.WriteLine(ex.Message + "\n" + ex.StackTrace); UnsuccessPrints++; }
                             File.Delete(newPhotoName);
-                        }
                     }
 
-                    if (tempPos == 1)
+                    if (tempPos == 26)
                     {
                         WaitingPrint = files_all.Count;
                         foreach (var files in files_all)
                         {
-                            if (files.Count() % 2 == 1)
+                            var strs = files[0].Split('\\');
+                            var res = Directory.GetFiles(Environment.CurrentDirectory + @"\Photos\" + $@"{strs[strs.Count() - 2]}");
+                            if (res.Count() % 2 == 1)
                             {
                                 files[0] = files[0].Remove(0, 7);
                                 PhotoCreatorLogic creatorLogic = new PhotoCreatorLogic();
@@ -257,7 +256,7 @@ namespace InstMain.Model
 
                                 File.Delete(@"Photos\" + files[0]);
 
-                                var img = creatorLogic.ResizeImage(790, photoName);
+                                var img = creatorLogic.ResizeImage(610, photoName);
                                 string newPhotoName = photoName.Replace(".jpg", "sp.jpg");
                                 img.Save(newPhotoName);
                                 img.Dispose();
