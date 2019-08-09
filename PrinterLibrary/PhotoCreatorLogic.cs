@@ -22,6 +22,7 @@ namespace PrinterLibrary
 
         public string HashtagforDrawing1 { get; set; }
         public string HashtagforDrawing2 { get; set; }
+        public string Username { get; set; }
 
         public PhotoCreatorLogic()
         {
@@ -120,6 +121,8 @@ namespace PrinterLibrary
             PointF hash1RightLocation = new PointF(650f, 40f);
             PointF hash2RightLocation = new PointF(650f, 70f);
 
+            PointF usernameLocation1 = new PointF(20f, 640f);
+
             using (Graphics graphics = Graphics.FromImage(bmp))
             {
                 PrivateFontCollection pfc = new PrivateFontCollection();
@@ -132,6 +135,8 @@ namespace PrinterLibrary
 
                     graphics.DrawString(HashtagforDrawing1, arialFont, Brushes.Gold, hash1RightLocation);
                     graphics.DrawString(HashtagforDrawing2, arialFont, Brushes.Gold, hash2RightLocation);
+
+                    graphics.DrawString(Username, arialFont, Brushes.Black, usernameLocation1);
                 }
             }
 

@@ -54,5 +54,41 @@ namespace InstagramLibrary
                 throw ex;
             }
         }
+
+        public async Task<string> GetUserName(string shortcode)
+        {
+            try
+            {
+                var request = HttpRequestBuilder.Get($"https://www.instagram.com/p/{shortcode}/", _cookieContainer);
+                request.Referer = $"https://www.instagram.com/p/{shortcode}/";
+
+                request.Headers["X-Requested-With"] = "XMLHttpRequest";
+                request.Headers["X-IG-App-ID"] = "936619743392459";
+                request.Headers["X-Instagram-GIS"] = "07872401bf58d36857235616ae5cc596";
+                request.AllowAutoRedirect = false;
+                using (var response = await request.GetResponseAsync() as HttpWebResponse)
+                {
+                    _cookieContainer.Add(response.Cookies); // may be exep
+                    using (var responseStream = response.GetResponseStream())
+                    using (var gzipStream = new GZipStream(responseStream, CompressionMode.Decompress))
+                    using (var streamReader = new StreamReader(gzipStream))
+                    {
+                        var data = streamReader.ReadToEnd();
+                        var splits = data.Split(new[] { "\"@id\":\"https:\\/\\/www.instagram.com\\/" }, StringSplitOptions.None);
+                        var resss = splits[1].Split('\\')[0];
+                        return resss;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("GetProfile progress occur exception " + ex.Message);
+                if (ex.Message.Contains("404"))
+                    return null;
+
+                logging.Invoke(LogIO.mainLog, new Log() { Date = DateTime.Now, Message = ex.Message, Method = "FindHashtagPhotos" });
+                throw ex;
+            }
+        }
     }
 }

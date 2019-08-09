@@ -57,6 +57,8 @@ namespace InstMain.ViewModel
         public ObservableCollection<InstagramModel> InstagramPhotos { get; set; }
         public ICommand StartCommand { get; set; }
         public ICommand PauseCommand { get; set; }
+        public ICommand StopCommand { get; set; }
+        public ICommand ErrorCommand { get; set; }
         public ICommand OpenPhotoCommand { get; set; }
         public ICommand OpenLogoCommand { get; set; }
 
@@ -68,12 +70,15 @@ namespace InstMain.ViewModel
             Hashtag_2 = $"#chernobylquest{day}{month}";
 
             IsEnabledStartBtn = true;
+            IsErrorAchived = true;
 
             _model = new InstagramModel();
             OpenPhotoCommand = new RelayCommand(OnOpenPhotoCommandExecute);
             OpenLogoCommand = new RelayCommand(OnOpenLogoCommandExecute);
             StartCommand = new RelayCommand(OnStartCommandExecute);
+            StopCommand = new RelayCommand(OnStopCommandExecute);
             PauseCommand = new RelayCommand(OnPauseCommandExecute);
+            ErrorCommand = new RelayCommand(OnErrorCommandExecute);
         }
 
         private bool _isEnabledStartBtn;
@@ -83,6 +88,23 @@ namespace InstMain.ViewModel
             get { return _isEnabledStartBtn; }
             set { _isEnabledStartBtn = value; OnPropertyChanged(); }
         }
+
+        private bool _isEnabledStopButton;
+
+        public bool IsEnabledStopButton
+        {
+            get { return _isEnabledStopButton; }
+            set { _isEnabledStopButton = value; OnPropertyChanged(); }
+        }
+
+        private bool _isErrorAchived;
+
+        public bool IsErrorAchived
+        {
+            get { return _isErrorAchived; }
+            set { _isErrorAchived = value; OnPropertyChanged(); }
+        }
+
 
         private bool _isEnabledPauseBtn;
 
@@ -101,9 +123,14 @@ namespace InstMain.ViewModel
             {
                 IsEnabledStartBtn = false;
                 IsEnabledPauseBtn = true;
+                IsEnabledStopButton = true;
+
+                if (_model.IsPrintAll)
+                    _model = new InstagramModel();                
 
                 _model.IsWorking = true;
-
+                _model.IsError_Need = !IsErrorAchived;
+                
                 if (Hashtag_1.Contains("#"))
                     _model.Hashtag_1 = Hashtag_1.Remove(0, 1);
                 else
@@ -135,11 +162,24 @@ namespace InstMain.ViewModel
             _model.IsWorking = false;
         }
 
+        private void OnStopCommandExecute(object obj)
+        {
+            IsEnabledStopButton = false;
+            IsEnabledStartBtn = true;
+            _model.IsPrintAll = true;
+            _model.IsWorking = false;
+        }
+
+        private void OnErrorCommandExecute(object obj)
+        {
+            IsErrorAchived = false;
+        }
+
         private async void CheckPosses()
         {
             await Task.Run(() =>
             {
-                while (_model.IsWorking)
+                while (_model.IsWorking || _model.IsPrintAll)
                 {
                     Thread.Sleep(100);
                     SuccessPrint = _model.SuccessPrint;

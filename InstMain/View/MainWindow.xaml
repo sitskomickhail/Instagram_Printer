@@ -12,7 +12,9 @@
     <Window.DataContext>
         <ViewModels:MainWindowViewModel/>
     </Window.DataContext>
-
+    <Window.Resources>
+        <Image x:Key="imgError" Source="\Images\Error.png"/>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.4*"/>
@@ -82,9 +84,21 @@
                 <RowDefinition Height="0.25*"/>
             </Grid.RowDefinitions>
             <StackPanel>
-                <Label Content="Hashtag #1"
+                <DockPanel Width="285" HorizontalAlignment="Left">
+                    <Label Content="Hashtag #1"
                        Margin="5, 5, 0, 0"
-                       FontSize="14"/>
+                       FontSize="14"
+                           HorizontalAlignment="Left"/>
+
+                    <Button Content="{StaticResource imgError}"
+                            HorizontalAlignment="Right"
+                            MaxHeight="25"
+                            MinWidth="25"
+                            Margin="0, 0, 5, 0"
+                            ToolTip="Произошло аварийное закрытие"
+                            Command="{Binding ErrorCommand}"
+                            IsEnabled="{Binding IsErrorAchived}"/>
+                </DockPanel>
                 <TextBox Name="tbHash1"
                          Margin="5, 0, 10, 0"
                          MinHeight="25"
@@ -101,11 +115,17 @@
                          FontSize="13"
                          FontWeight="Bold"
                          Text="{Binding Hashtag_2}"/>
-                <Button Content="Пауза"
+                <!--<Button Content="Пауза"
                         FontSize="17"
                         Margin="10, 14, 10, 0"
                         Command="{Binding PauseCommand}"
-                        IsEnabled="{Binding IsEnabledPauseBtn}"/>
+                        IsEnabled="{Binding IsEnabledPauseBtn}"/>-->
+                <Button Content="Стоп"
+                        FontSize="17"
+                        Margin="10, 14, 10, 0"
+                        Command="{Binding StopCommand}"
+                        IsEnabled="{Binding IsEnabledStopButton}"/>
+
             </StackPanel>
             <Grid Grid.Row="1">
                 <Button Content="Старт"

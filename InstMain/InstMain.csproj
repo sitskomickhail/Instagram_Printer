@@ -125,5 +125,11 @@
   <ItemGroup>
     <Resource Include="iconfinder_Instagram_82367.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Properties\Error.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
